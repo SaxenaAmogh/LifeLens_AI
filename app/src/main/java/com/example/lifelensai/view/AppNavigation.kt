@@ -19,5 +19,8 @@ fun AppNavigation(navController: NavHostController) {
         composable("home") {
             HomePage(navController)
         }
+        composable("select") {
+            SelectReportPage(navController)
+        }
     }
 }
