@@ -22,5 +22,11 @@ fun AppNavigation(navController: NavHostController) {
         composable("select") {
             SelectReportPage(navController)
         }
+        composable("patient") {
+            PatientDetailsPage(navController)
+        }
+        composable("view") {
+            ViewReportPage(navController)
+        }
     }
 }

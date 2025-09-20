@@ -123,7 +123,7 @@ fun HomePage(navController: NavController) {
                                         .weight(0.6f)
                                         .background(
                                             shape = RoundedCornerShape(50),
-                                            color = Color(0xFFE7E7E7)
+                                            color = Color(0xFFF5F5F5)
                                         )
                                 ){
                                     Row(
@@ -180,6 +180,11 @@ fun HomePage(navController: NavController) {
                                             shape = RoundedCornerShape(10),
                                             width = 1.dp,
                                             color = Color(0xFFD6D6D6)
+                                        )
+                                        .clickable(
+                                            onClick = {
+                                                navController.navigate("patient")
+                                            }
                                         )
                                 ){
                                     Row(
@@ -247,7 +252,6 @@ fun HomePage(navController: NavController) {
 
                                 Spacer(modifier = Modifier.size(0.02f * screenHeight))
                             }
-
                         }
                     }
 
@@ -282,137 +286,6 @@ fun HomePage(navController: NavController) {
     )
 }
 
-@Composable
-fun DRGauge(
-    percentage: Int,
-    modifier: Modifier = Modifier,
-    strokeWidth: Dp = 12.dp
-) {
-    val sweepAngle = (percentage.coerceIn(0, 100) / 100f) * 270f // Arc covers 270°
-    val startAngle = 135f // Start bottom-left, end bottom-right
-
-    // Pick color based on range
-    val gaugeColor = when (percentage) {
-        in 0..40 -> Color(0xFF4CAF50) // Green
-        in 41..70 -> Color(0xFFFFC107) // Yellow
-        else -> Color(0xFFF44336) // Red
-    }
-
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val diameter = size.minDimension
-            val radius = diameter / 2f
-            val topLeft = Offset((size.width - diameter) / 2, (size.height - diameter) / 2)
-            val sizeArc = Size(diameter, diameter)
-
-            // Background arc (light gray)
-            drawArc(
-                color = Color.LightGray,
-                startAngle = startAngle,
-                sweepAngle = 270f,
-                useCenter = false,
-                style = Stroke(width = strokeWidth.toPx(), cap = StrokeCap.Round),
-                topLeft = topLeft,
-                size = sizeArc
-            )
-
-            // Progress arc
-            drawArc(
-                color = gaugeColor,
-                startAngle = startAngle,
-                sweepAngle = sweepAngle,
-                useCenter = false,
-                style = Stroke(width = strokeWidth.toPx(), cap = StrokeCap.Round),
-                topLeft = topLeft,
-                size = sizeArc
-            )
-        }
-
-        // Center text
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = "$percentage%",
-                color = Color.Black,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = "DR Risk",
-                fontSize = 14.sp,
-                color = Color.Gray
-            )
-        }
-    }
-}
-
-@Composable
-fun DNGauge(
-    percentage: Int,
-    modifier: Modifier = Modifier,
-    strokeWidth: Dp = 12.dp
-) {
-    val sweepAngle = (percentage.coerceIn(0, 100) / 100f) * 270f // Arc covers 270°
-    val startAngle = 135f // Start bottom-left, end bottom-right
-
-    // Pick color based on range
-    val gaugeColor = when (percentage) {
-        in 0..40 -> Color(0xFF4CAF50) // Green
-        in 41..70 -> Color(0xFFFFC107) // Yellow
-        else -> Color(0xFFF44336) // Red
-    }
-
-    Box(
-        modifier = modifier,
-        contentAlignment = Alignment.Center
-    ) {
-        Canvas(modifier = Modifier.fillMaxSize()) {
-            val diameter = size.minDimension
-            val radius = diameter / 2f
-            val topLeft = Offset((size.width - diameter) / 2, (size.height - diameter) / 2)
-            val sizeArc = Size(diameter, diameter)
-
-            // Background arc (light gray)
-            drawArc(
-                color = Color.LightGray,
-                startAngle = startAngle,
-                sweepAngle = 270f,
-                useCenter = false,
-                style = Stroke(width = strokeWidth.toPx(), cap = StrokeCap.Round),
-                topLeft = topLeft,
-                size = sizeArc
-            )
-
-            // Progress arc
-            drawArc(
-                color = gaugeColor,
-                startAngle = startAngle,
-                sweepAngle = sweepAngle,
-                useCenter = false,
-                style = Stroke(width = strokeWidth.toPx(), cap = StrokeCap.Round),
-                topLeft = topLeft,
-                size = sizeArc
-            )
-        }
-
-        // Center text
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = "$percentage%",
-                color = Color.Black,
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold
-            )
-            Text(
-                text = "DN Risk",
-                fontSize = 14.sp,
-                color = Color.Gray
-            )
-        }
-    }
-}
 
 
 @Preview(showBackground = true)
