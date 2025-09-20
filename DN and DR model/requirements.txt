@@ -1,0 +1,9 @@
+tensorflow
+xgboost
+pandas
+numpy
+opencv-python-headless
+matplotlib
+gradio
+firebase-admin
+requests
