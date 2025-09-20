@@ -2,8 +2,9 @@ package com.example.lifelensai.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val BackgroundColor = Color.White
+val BackgroundColor = Color(0xFFE7E7E7)
 val PrimaryColor = Color(0xFF2196F3)
+val SecondaryColor = Color(0xFF0fb8d5)
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
